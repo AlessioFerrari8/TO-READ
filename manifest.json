@@ -13,14 +13,14 @@
     },
     "action": {
         "default_popup": "popup.html",
-        "default_icon": "icon_ext.png"
+        "default_icon": "favicon.png"
     },
     "chrome_url_overrides": {
         "newtab": "newtab.html"
     },
     "icons": {
-        "16": "icon_ext.png",
-        "48": "icon_ext.png",
-        "128": "icon_ext.png"
+        "16": "favicon.png",
+        "48": "favicon.png",
+        "128": "favicon.png"
     }
 }
