@@ -1,0 +1,27 @@
+# Chrome Extension keys
+TO-READ.pem
+*.pem
+
+# Node/npm
+node_modules/
+npm-debug.log
+package-lock.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build/Dist
+dist/
+build/
+
+# Environment
+.env
+.env.local
