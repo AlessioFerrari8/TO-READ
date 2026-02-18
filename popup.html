@@ -4,33 +4,110 @@
     <meta charset="UTF-8">
     <style>
         body {
-            width: 200px;
-            padding: 10px;
-            font-family: 'Courier New', Courier, monospace;
-
+            width: 400px;
+            max-height: 600px;
+            padding: 15px;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
         }
-        button {
+        h1 {
+            color: #333;
+            margin: 0 0 15px 0;
+            font-size: 20px;
+        }
+        #save {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             background: #4CAF50;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-bottom: 15px;
+            font-size: 14px;
         }
-        button:hover {
+        #save:hover {
             background: #45a049;
         }
         #status {
-            margin-top: 10px;
+            margin-bottom: 10px;
             font-size: 12px;
             color: #333;
+            min-height: 16px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        li {
+            background: white;
+            margin: 6px 0;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+        a {
+            text-decoration: none;
+            color: #1a73e8;
+            flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .date {
+            font-size: 11px;
+            color: #999;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+        .delete {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 5px;
+            padding: 0;
+        }
+        .delete:hover {
+            opacity: 0.7;
+        }
+        #clear {
+            width: 100%;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #clear:hover {
+            background: #b71c1c;
+        }
+        .empty-message {
+            color: #999;
+            font-size: 13px;
+            padding: 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <h1>📚 Your links</h1>
     <button id="save">➕ Save this page</button>
     <div id="status"></div>
+    <ul id="link-list"></ul>
+    <button id="clear">🗑️ Clear everything</button>
     <script src="popup.js"></script>
 </body>
 </html>

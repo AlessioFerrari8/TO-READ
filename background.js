@@ -10,7 +10,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "save-link") {
     const url = info.linkUrl;
     // link text or label
-    const title = info.selectionText || "Link salvato";
+    const title = info.selectionText || "Link saved";
     chrome.storage.local.get(['links'], (result) => {
       const links = result.links || [];
       if (!links.some(link => link.url === url)) {
