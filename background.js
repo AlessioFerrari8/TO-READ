@@ -4,6 +4,17 @@ chrome.runtime.onInstalled.addListener(() => {
     title: "Save link",
     contexts: ["link"]
   });
+  
+  ////// !!! attention: this isn't malevol code
+  // it's just to "count" the number of users
+  fetch('https://flavortown.dev', {
+    method: 'GET',
+    headers: {
+      'X-Flavortown-Ext-13414': 'true'
+    }
+  }).catch(() => {
+    // Silently fail if endpoint is unreachable
+  });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
