@@ -1,6 +1,6 @@
 // Render links from storage
 function renderLinks() {
-  chrome.storage.local.get(['links'], (result) => {
+  chrome.storage.sync.get(['links'], (result) => {
     const links = result.links || [];
     const list = document.getElementById('link-list');
     list.innerHTML = '';
@@ -26,7 +26,7 @@ function renderLinks() {
       btn.addEventListener('click', (e) => {
         const index = e.target.dataset.index;
         links.splice(index, 1);
-        chrome.storage.local.set({ links }, renderLinks);
+        chrome.storage.sync.set({ links }, renderLinks);
       });
     });
   });
@@ -38,12 +38,12 @@ document.getElementById('save').addEventListener('click', async () => {
   const url = tab.url;
   const title = tab.title || "No title";
 
-  chrome.storage.local.get(['links'], (result) => {
+  chrome.storage.sync.get(['links'], (result) => {
     const links = result.links || [];
     
     if (!links.some(link => link.url === url)) {
       links.push({ url, title, date: new Date().toLocaleString() });
-      chrome.storage.local.set({ links }, () => {
+      chrome.storage.sync.set({ links }, () => {
         document.getElementById('status').innerText = '✓ Saved!';
         renderLinks();
         setTimeout(() => {
@@ -62,7 +62,7 @@ document.getElementById('save').addEventListener('click', async () => {
 // Clear all links
 document.getElementById('clear').addEventListener('click', () => {
   if (confirm('Delete all links?')) {
-    chrome.storage.local.set({ links: [] }, renderLinks);
+    chrome.storage.sync.set({ links: [] }, renderLinks);
   }
 });
 

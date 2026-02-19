@@ -11,11 +11,12 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const url = info.linkUrl;
     // link text or label
     const title = info.selectionText || "Link saved";
-    chrome.storage.local.get(['links'], (result) => {
+    // now it saves on the account, not only local 
+    chrome.storage.sync.get(['links'], (result) => {
       const links = result.links || [];
       if (!links.some(link => link.url === url)) {
         links.push({ url, title, date: new Date().toLocaleString() });
-        chrome.storage.local.set({ links });
+        chrome.storage.sync.set({ links });
       }
     });
   }
