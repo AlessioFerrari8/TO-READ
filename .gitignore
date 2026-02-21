@@ -22,6 +22,9 @@ Thumbs.db
 dist/
 build/
 
+# Metadata
+_metadata/
+
 # Environment
 .env
 .env.local
