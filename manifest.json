@@ -6,8 +6,21 @@
     "permissions": [
         "storage",
         "contextMenus",
-        "tabs"
+        "tabs",
+        "declarativeNetRequest"
     ],
+    "host_permissions": [
+        "https://flavortown.hackclub.com/*"
+    ],
+    "declarative_net_request": {
+        "rule_resources": [
+        {
+            "id": "flavortown_rules",
+            "enabled": true,
+            "path": "rules.json"
+        }
+        ]
+    },
     "background": {
         "service_worker": "background.js"
     },
