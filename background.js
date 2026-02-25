@@ -4,9 +4,12 @@ chrome.runtime.onInstalled.addListener(() => {
     title: "Save link",
     contexts: ["link"]
   });
-  
-  ////// !!! attention: this isn't malevol code
-  // it's just to "count" the number of users
+});
+
+////// !!! attention: this isn't malevol code
+// it's just to "count" the number of users
+chrome.runtime.onStartup.addListener(() => { // moved to runtime on startup, so it fetches every time
+  // the broswer starts
   fetch('https://flavortown.dev', {
     method: 'GET',
     headers: {
