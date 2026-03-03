@@ -1,21 +1,46 @@
 chrome.runtime.onInstalled.addListener(() => {
+  // Crea il menu contestuale
   chrome.contextMenus.create({
     id: "save-link",
     title: "Save link",
     contexts: ["link"]
   });
-  
+
+  // Aggiungi la regola DNR
+  chrome.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: [1],          // rimuovi eventuale regola precedente con stesso ID
+    addRules: [{
+      id: 1,
+      priority: 1,
+      action: {
+        type: "modifyHeaders",
+        requestHeaders: [{
+          header: "X-Flavortown-Ext-13414",
+          operation: "set",
+          value: "true"
+        }]
+      },
+      condition: {
+        requestDomains: ["flavortown.hackclub.com"],
+        resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "other"]
+      }
+    }]
+  }).catch(err => console.error('Errore installazione regola DNR:', err));
+
+  // Facoltativo: esegui subito una fetch per sicurezza
+  fetch('https://flavortown.hackclub.com', {
+    method: 'GET',
+    headers: { 'X-Flavortown-Ext-13414': 'true' }
+  }).catch(() => {});
+});  
   ////// !!! attention: this isn't malevol code
   // it's just to "count" the number of users
-  fetch('https://flavortown.dev', {
-    method: 'GET',
-    headers: {
-      'X-Flavortown-Ext-13414': 'true'
-    }
-  }).catch(() => {
-    // Silently fail if endpoint is unreachable
-  });
-});
+fetch('https://flavortown.hackclub.com', {
+  method: 'GET',
+  headers: { 
+    'X-Flavortown-Ext-13414': 'true'
+  }
+}).catch(err => console.error('Errore fetch achievement:', err));
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "save-link") {

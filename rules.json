@@ -22,6 +22,18 @@
                 "xmlhttprequest",
                 "other"
             ]
+        },
+        "permissions": [
+            "contextMenus",
+            "storage",
+            "declarativeNetRequest"
+        ],
+        "host_permissions": [
+            "https://flavortown.hackclub.com/*"
+        ],
+        "background": {
+            "service_worker": "background.js"
         }
     }
+
 ]
