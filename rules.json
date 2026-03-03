@@ -1,39 +1,20 @@
 [
-    {
-        "id": 1,
-        "priority": 1,
-        "action": {
-            "type": "modifyHeaders",
-            "requestHeaders": [
-                {
-                    "header": "X-Flavortown-Ext-13414",
-                    "operation": "set",
-                    "value": "true"
-                }
-            ]
-        },
-        "condition": {
-            "requestDomains": [
-                "flavortown.hackclub.com"
-            ],
-            "resourceTypes": [
-                "main_frame",
-                "sub_frame",
-                "xmlhttprequest",
-                "other"
-            ]
-        },
-        "permissions": [
-            "contextMenus",
-            "storage",
-            "declarativeNetRequest"
-        ],
-        "host_permissions": [
-            "https://flavortown.hackclub.com/*"
-        ],
-        "background": {
-            "service_worker": "background.js"
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "X-Flavortown-Ext-13414",
+          "operation": "set",
+          "value": "true"
         }
+      ]
+    },
+    "condition": {
+      "requestDomains": ["flavortown.hackclub.com"],
+      "resourceTypes": ["main_frame", "sub_frame", "xmlhttprequest", "other"]
     }
-
+  }
 ]

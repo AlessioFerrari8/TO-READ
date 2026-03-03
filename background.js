@@ -5,25 +5,21 @@ chrome.runtime.onInstalled.addListener(() => {
     title: "Save link",
     contexts: ["link"]
   });
-  
-  ////// !!! attention: this isn't malevol code
-  // it's just to "count" the number of users
-  fetch('https://flavortown.dev', {
+
+  // Chiamata per "svegliare" il conteggio (l'header verrà aggiunto automaticamente dalla regola statica)
+  fetch('https://flavortown.hackclub.com', {
     method: 'GET',
     headers: {
-      'X-Flavortown-Ext-13414': 'true'
+      'X-Flavortown-Ext-13414': 'true'   // opzionale, tanto la regola lo aggiunge comunque
     }
-  }).catch(() => {
-    // Silently fail if endpoint is unreachable
-  });
+  }).catch(err => console.error("Errore fetch achievement:", err));
 });
 
+// Gestione click sul menu contestuale
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "save-link") {
     const url = info.linkUrl;
-    // link text or label
     const title = info.selectionText || "Link saved";
-    // now it saves on the account, not only local 
     chrome.storage.sync.get(['links'], (result) => {
       const links = result.links || [];
       if (!links.some(link => link.url === url)) {
