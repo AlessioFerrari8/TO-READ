@@ -15,3 +15,7 @@
 
 ---
 
+### README
+Add method of installation with crx.
+
+
