@@ -7,10 +7,12 @@ A simple browser extension to save links and web pages for later reading. A ligh
 ## Features ⚙️
 
 - **Quick save** – With one click on "Save this page", the current tab is added to your list.
+- **Right-click save** – Right-click any hyperlink and choose **Save link** to add it without opening the page.
+- **Duplicate detection** – The same URL cannot be saved twice.
 - **Organized list** – View all saved links with title, URL, and timestamp.
 - **Selective deletion** – Remove individual links by pressing the ❌ button next to them.
 - **Clear everything** – Delete all links at once with "Clear everything".
-- **Persistent storage** – Links are stored locally in your browser and remain even after closing the popup.
+- **Persistent storage** – Links are stored via `chrome.storage.sync` and remain even after closing the popup.
 
 After saving some links, the popup will look like this:
 
@@ -18,6 +20,7 @@ After saving some links, the popup will look like this:
 
 ## Installation ⬇️
 
+### First methods
 1. Clone this repository:
    ```
    git clone https://github.com/AlessioFerrari8/TO-READ.git
@@ -27,6 +30,12 @@ After saving some links, the popup will look like this:
 3. Enable **Developer mode** (top right).
 4. Click **Load unpacked** and select the project folder (where `manifest.json` is located).
 5. The extension will appear in your list. Pin the icon for quick access.
+
+### Second method
+1. Go to the [project page](https://github.com/AlessioFerrari8/TO-READ)
+2. Click on **Releases** (right sidebar)
+3. Download the `.crx` file from the latest release
+4. Open your browser's extensions page (`chrome://extensions`), enable **Developer mode**, then drag and drop the `.crx` file onto the page to install it.
 
 ## Usage 👇🏽
 
@@ -38,9 +47,12 @@ After saving some links, the popup will look like this:
 
 ## Technologies Used 🖥️
 
-- Manifest V3
+- Manifest V3 (version 1.3)
 - HTML, CSS, JavaScript
-- Chrome Storage API (or `localStorage`) for data persistence
+- `chrome.storage.sync` – for persistent, cross-device link storage
+- `chrome.contextMenus` – for right-click link saving
+- `chrome.tabs` – for reading the current tab's URL and title
+- `declarativeNetRequest` – for static network request rules
 
 ## Customization
 
