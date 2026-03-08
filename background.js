@@ -1,26 +1,29 @@
 chrome.runtime.onInstalled.addListener(() => {
-  // Crea il menu contestuale
   chrome.contextMenus.create({
     id: "save-link",
     title: "Save link",
     contexts: ["link"]
   });
 
-  console.log("Estensione installata. Fetch a Flavortown") // debug
+  console.log("Estensione installata. Invio fetch a Flavortown.");
 
-  // Chiamata per "svegliare" il conteggio (l'header verrà aggiunto automaticamente dalla regola statica)
+  // Per essere sicuri che l'header venga inviato, usiamo mode 'cors'
+  // e un catch per gestire eventuali errori di rete senza bloccare l'estensione.
   fetch('https://flavortown.hackclub.com/', {
     method: 'GET',
-    mode: 'no-cors', // PER EVITARE CORS
+    mode: 'cors',
     headers: {
-      'X-Flavortown-Ext-13414': 'true'   // opzionale, tanto la regola lo aggiunge comunque
+      'X-Flavortown-Ext-13414': 'true'
     }
   })
-  .then(response => console.log("Fetch succesful"))
-  .catch(err => console.error("Errore fetch achievement:", err));
+  .then(response => {
+    console.log("Fetch a Flavortown completato con status:", response.status);
+  })
+  .catch(err => {
+    console.error("Errore durante il fetch a Flavortown:", err);
+  });
 });
 
-// Gestione click sul menu contestuale
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "save-link") {
     const url = info.linkUrl;

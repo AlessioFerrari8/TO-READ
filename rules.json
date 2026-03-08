@@ -13,7 +13,7 @@
       ]
     },
     "condition": {
-      "urlFilter": "*://flavortown.hackclub.com/*",
+      "urlFilter": "*flavortown.hackclub.com*",
       "resourceTypes": ["main_frame", "sub_frame", "xmlhttprequest", "other"]
     }
   }
