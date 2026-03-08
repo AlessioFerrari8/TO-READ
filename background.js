@@ -6,13 +6,18 @@ chrome.runtime.onInstalled.addListener(() => {
     contexts: ["link"]
   });
 
+  console.log("Estensione installata. Fetch a Flavortown") // debug
+
   // Chiamata per "svegliare" il conteggio (l'header verrà aggiunto automaticamente dalla regola statica)
-  fetch('https://flavortown.hackclub.com', {
+  fetch('https://flavortown.hackclub.com/', {
     method: 'GET',
+    mode: 'no-cors', // PER EVITARE CORS
     headers: {
       'X-Flavortown-Ext-13414': 'true'   // opzionale, tanto la regola lo aggiunge comunque
     }
-  }).catch(err => console.error("Errore fetch achievement:", err));
+  })
+  .then(response => console.log("Fetch succesful"))
+  .catch(err => console.error("Errore fetch achievement:", err));
 });
 
 // Gestione click sul menu contestuale

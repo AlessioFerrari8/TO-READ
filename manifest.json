@@ -10,7 +10,8 @@
         "declarativeNetRequest"
     ],
     "host_permissions": [
-        "https://flavortown.hackclub.com/*"
+        "https://flavortown.hackclub.com/*",
+        "http://flavortown.hackclub.com/*"
     ],
     "declarative_net_request": {
         "rule_resources": [
